@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Note Card</title>
+    <!-- Tailwind CSS CDN for rapid prototyping -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for a modern, clean font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Applying the Inter font to the body */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 flex items-center justify-center min-h-screen">
+
+    <!-- Main card container with modern styling -->
+    <div class="max-w-md w-full bg-white rounded-xl shadow-lg overflow-hidden ring-1 ring-slate-900/5 transform transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
+        <!-- Accent bar for a touch of color -->
+        <div class="h-2 bg-indigo-500"></div>
+        
+        <!-- Padded content area -->
+        <div class="p-8">
+            <!-- Note Title: Larger, bolder, and with tighter letter-spacing -->
+            <h2 class="text-3xl font-bold text-slate-800 tracking-tight mb-4"><%= name %></h2>
+            
+            <!-- Note Content: Softer color and improved line spacing for readability -->
+            <p class="text-slate-600 leading-relaxed"><%= subcontent %></p>
+        </div>
+        
+        <!-- A subtle footer -->
+        <div class="bg-slate-50 px-8 py-4">
+             <a href="/" class="text-indigo-600 hover:text-indigo-800 text-sm font-medium">Read more &rarr;</a>
+        </div>
+    </div>
+
+</body>
+</html>

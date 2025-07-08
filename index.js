@@ -1,6 +1,8 @@
 const express = require("express");
 const path = require("path");
 const fs = require ("fs");
+const { info } = require("console");
+const { name } = require("ejs");
 const app = express();
 const PORT = 3000;
 
@@ -66,6 +68,16 @@ app.post('/create', (req, res)=>{
   })
 })
 
+app.get(`/notes/:username`, (req,res)=>{
+  console.log(req.params.username)
+  let addr = req.params.username
+  let info = ""
+  fs.readFile(`./files/${addr}`,"utf-8", (err,data)=>{
+    res.render("notes.ejs", {name: addr, subcontent : data })
+  })
+ 
+  
+})
 // --- START SERVER ---
 
 app.listen(PORT, () => {
