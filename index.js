@@ -3,6 +3,7 @@ const path = require("path");
 const fs = require ("fs");
 const { info } = require("console");
 const { name } = require("ejs");
+const { title } = require("process");
 const app = express();
 const PORT = 3000;
 
@@ -77,6 +78,32 @@ app.get(`/notes/:username`, (req,res)=>{
   })
  
   
+})
+
+let editName="";
+app.get(`/edit/:filename`, (req,res)=>{
+  editName=req.params.filename;
+  fs.readFile(`./files/${req.params.filename}`,"utf-8", (err,data)=>{
+    res.render("edit.ejs", {fileNameEdit: req.params.filename, subcontent2 : data })
+  })
+})
+
+app.post(`/update`, (req,res)=>{
+  if(req.body.notetitle == editName){
+    fs.writeFile(`./files/${editName}`, `${req.body.notecontent}`, (err)=>{
+      res.redirect("/");
+    })
+  }else{
+    fs.unlink(`./files/${editName}`, (err)=>{
+      if(err){
+        console.log("error deleting file")
+      }
+    })
+    fs.writeFile(`./files/${req.body.notetitle}`, `${req.body.notecontent}`,(err)=>{
+      res.redirect("/");
+    })
+    editName=""
+  }
 })
 // --- START SERVER ---
 
